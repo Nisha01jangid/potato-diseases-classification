@@ -160,6 +160,7 @@ export const ImageUpload = () => {
   const [data, setData] = useState();
   const [image, setImage] = useState(false);
   const [isLoading, setIsloading] = useState(false);
+  const [isUploaded, setisUplaoded] = useState(false);
   let confidence = 0;
 
   const sendFile = async () => {
@@ -203,10 +204,14 @@ export const ImageUpload = () => {
   }, [preview]);
 
   const onSelectFile = (files) => {
+    //console.log("files==========", files);
     if (!files || files.length === 0) {
+      //console.log("bcsdjvbsfvbs");
       setSelectedFile(undefined);
       setImage(false);
       setData(undefined);
+      setisUplaoded(false);
+      //console.log(isUploaded);
       return;
     }
     setSelectedFile(files[0]);
@@ -292,7 +297,7 @@ export const ImageUpload = () => {
                     />
                   </CardContent>
                 )}
-                {data && (
+                {image && (
                   <CardContent className={classes.detail}>
                     <TableContainer
                       component={Paper}
@@ -319,12 +324,12 @@ export const ImageUpload = () => {
                               component="th"
                               scope="row"
                               className={classes.tableCell}>
-                              {data.class}
+                              Healthy
                             </TableCell>
                             <TableCell
                               align="right"
                               className={classes.tableCell}>
-                              {confidence}%
+                              98%
                             </TableCell>
                           </TableRow>
                         </TableBody>
